@@ -40,6 +40,16 @@ func register(name, url string) (err error) {
 	log.Debug().Int("status code", resp.StatusCode).Msg("server responded")
 	fmt.Println("response", response)
 
+	parsed := map[string]string{}
+	err = json.Unmarshal(response, &parsed)
+	if err != nil {
+		return err
+	}
+
+	for k, v := range parsed {
+		nodes[k] = v
+	}
+
 	return
 
 }
