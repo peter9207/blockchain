@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"github.com/rs/zerolog/log"
 	"io/ioutil"
 	"net/http"
 )
@@ -14,6 +15,8 @@ type registerRequest struct {
 }
 
 func register(name, url string) (err error) {
+
+	log.Info().Str("name", name).Str("url", url).Msg("making request to existing cluster")
 
 	body, err := json.Marshal(registerRequest{
 		Name: name,
@@ -34,6 +37,7 @@ func register(name, url string) (err error) {
 		return
 	}
 
+	log.Debug().Int("status code", resp.StatusCode).Msg("server responded")
 	fmt.Println("response", response)
 
 	return
