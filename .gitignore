@@ -1,3 +1,9 @@
+
+config.yml
+config.yaml
+blockchain
+!blockchain/
+
 # Binaries for programs and plugins
 *.exe
 *.exe~
